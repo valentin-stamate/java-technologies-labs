@@ -49,7 +49,14 @@ public class Bonus extends HttpServlet {
         int n = letters.length;
 
         int[] x = new int[n + 1];
-        UtilService.generatePermutations(x, n, size != 0 ? size : n, 0, letters, permutations);
+
+        if (size == 0) {
+            for (int i = 1; i <= n; i++) {
+                UtilService.generatePermutations(x, n, i, 0, letters, permutations);
+            }
+        } else {
+            UtilService.generatePermutations(x, n, size, 0, letters, permutations);
+        }
 
         List<String> fileLines = UtilService.readFileFromResources("dictionary.txt");
 
