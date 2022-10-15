@@ -1,10 +1,14 @@
 <%@ page import="com.example.lab_02.service.UtilService" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.example.lab_02.beans.UserForm" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String wordQuery = request.getParameter("word");
-    String sizeQuery = request.getParameter("size");
+
+    UserForm userForm = (UserForm) request.getAttribute("userForm");
+
+    String wordQuery = userForm.getWord();
+    String sizeQuery = "" + userForm.getSize();
 
     boolean dictionaryExists = UtilService.fileExists("dictionary.txt");
 

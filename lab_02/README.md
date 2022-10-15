@@ -1,8 +1,8 @@
 # Lab 2
 
 * [x] Compulsory
-* [ ] Homework (WIP)
-* [ ] Bonus (WIP)
+* [x] Homework
+* [ ] Bonus
 
 ## Resources
 * https://youtube.com/playlist?list=PLEAQNNR8IlB588DQvb2wbKFQh2DviPApl
@@ -12,3 +12,4 @@
 * https://jakarta.ee/specifications/mvc/2.0/jakarta-mvc-spec-2.0.pdf
 * https://github.com/hantsy/jakartaee-mvc-sample/blob/master/docs/guide.md
 * https://youtu.be/C10v6z3CAWA
+* https://stackoverflow.com/a/6561816/10805602

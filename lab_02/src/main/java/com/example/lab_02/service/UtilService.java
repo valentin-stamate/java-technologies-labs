@@ -1,4 +1,4 @@
-package com.example.lab_02.services.service;
+package com.example.lab_02.service;
 
 import java.io.IOException;
 import java.net.URL;
