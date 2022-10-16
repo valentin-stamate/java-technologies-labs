@@ -1,16 +1,15 @@
 package com.example.lab_02.service;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UtilService {
 
@@ -129,4 +128,26 @@ public class UtilService {
         return permutations;
     }
 
+    public static String getRandomResource(String folderPath) throws IOException {
+        URL resourcePath = UtilService.class.getClassLoader().getResource("");
+
+        String resourcesPath = resourcePath.getPath().substring(1).replace("%20", " ");
+        String fullImagesPath = resourcesPath + folderPath;
+
+        Stream<Path> pathStream = Files.walk(Paths.get(fullImagesPath));
+        List<String> paths = new ArrayList<>(pathStream.filter(Files::isRegularFile).map(Path::toString).toList());
+
+        Collections.shuffle(paths);
+
+        return Paths.get(paths.get(0)).getFileName().toString();
+    }
+
+    public static FileInputStream getFileInputStream(String filePath) throws IOException {
+        URL resourcePath = UtilService.class.getClassLoader().getResource("");
+
+        String resourcesPath = resourcePath.getPath().substring(1).replace("%20", " ");
+        String fullFilePath = resourcesPath + filePath;
+
+        return new FileInputStream(fullFilePath);
+    }
 }

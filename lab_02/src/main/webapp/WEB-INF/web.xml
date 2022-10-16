@@ -5,6 +5,10 @@
          version="5.0">
 
     <filter-mapping>
+        <filter-name>LanguageFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>LoggingFilter</filter-name>
         <url-pattern>/input_controller</url-pattern>
     </filter-mapping>
@@ -12,5 +16,10 @@
         <filter-name>DecoratorFilter</filter-name>
         <url-pattern>/input_controller</url-pattern>
     </filter-mapping>
+
+    <context-param>
+        <param-name>language</param-name>
+        <param-value>english</param-value>
+    </context-param>
 
 </web-app>

@@ -13,3 +13,6 @@
 * https://github.com/hantsy/jakartaee-mvc-sample/blob/master/docs/guide.md
 * https://youtu.be/C10v6z3CAWA
 * https://stackoverflow.com/a/6561816/10805602
+* https://www.baeldung.com/javaee-web-annotations
+* https://javatutorial.net/java-init-parameters/
+* https://stackoverflow.com/a/67019833/10805602

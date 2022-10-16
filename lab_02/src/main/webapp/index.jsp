@@ -10,7 +10,7 @@
 <br/>
 
 <div><a href="input.jsp">Compulsory</a></div>
-<div><a href="input_controller">Homework</a></div>
+<div><a href="input_controller">Homework + Bonus</a></div>
 
 </body>
 </html>
