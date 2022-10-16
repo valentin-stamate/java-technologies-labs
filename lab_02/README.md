@@ -2,7 +2,7 @@
 
 * [x] Compulsory
 * [x] Homework
-* [ ] Bonus
+* [x] Bonus
 
 ## Resources
 * https://youtube.com/playlist?list=PLEAQNNR8IlB588DQvb2wbKFQh2DviPApl
