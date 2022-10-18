@@ -24,7 +24,15 @@ public class LanguageFilter implements Filter {
 
         boolean foundLanguageCookie = false;
 
-        for (Cookie cookie : List.of(httpServletRequest.getCookies())) {
+        Cookie[] httpCookies = httpServletRequest.getCookies();
+
+        if (httpCookies == null) {
+            httpCookies = new Cookie[0];
+        }
+
+        List<Cookie> cookieList = List.of(httpCookies);
+
+        for (Cookie cookie : cookieList) {
             if (cookie == null) {
                 continue;
             }
