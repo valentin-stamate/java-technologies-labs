@@ -2,10 +2,9 @@ package com.example.lab_03.persistence.dao;
 
 import com.example.lab_03.models.Team;
 import com.example.lab_03.persistence.Persistence;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
