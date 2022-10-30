@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Facelet Time</title>
+    <link rel="stylesheet" type="text/css" href="styles/global.css" />
+</h:head>
+<h:body>
+
+    <h2>Edit Team</h2>
+
+    <h:form>
+        <div class="card flex-col">
+            <h5>Name</h5>
+            <p:inputText value="#{editTeamView.name}"/>
+
+            <p:outputLabel for="basic" value="Basic"/>
+            <p:datePicker id="basic" value="#{editTeamView.foundingDate}" />
+
+            <p:outputLabel for="country" value="Country: "/>
+            <p:selectOneMenu id="country" value="#{editTeamView.country}" style="width:150px">
+                <p:ajax listener="#{editTeamView.onTeamChange}" update="country"/>
+                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true"/>
+                <f:selectItems value="#{editTeamView.countries}"/>
+            </p:selectOneMenu>
+
+        </div>
+    </h:form>
+
+    <div class="flex flex-row">
+        <p:commandButton ajax="true" value="Home" action="homePage"/>
+        <p:commandButton ajax="true" value="Edit" action="#{editTeamView.onEditTeam}"/>
+        <p:commandButton ajax="true" value="Add" action="#{editTeamView.onAddTeam}"/>
+    </div>
+
+</h:body>
+</html>
