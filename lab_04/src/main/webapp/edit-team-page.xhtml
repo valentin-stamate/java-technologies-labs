@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Facelet Time</title>
+    <link rel="stylesheet" type="text/css" href="styles/global.css" />
+</h:head>
+<h:body>
+
+    <div class="page-layout">
+        <div>
+            <ui:insert name="header">
+                <ui:include src="components/header.xhtml"/>
+            </ui:insert>
+
+            <ui:insert name="header">
+                <ui:include src="components/navbar.xhtml"/>
+            </ui:insert>
+        </div>
+
+        <div>
+            <ui:insert name="content">
+                <ui:include src="components/dataEdit.xhtml"/>
+            </ui:insert>
+        </div>
+
+        <div>
+            <ui:insert name="footer">
+                <ui:include src="components/footer.xhtml"/>
+            </ui:insert>
+        </div>
+    </div>
+
+</h:body>
+</html>

@@ -5,7 +5,7 @@
          version="5.0">
 
     <welcome-file-list>
-        <welcome-file>teams.xhtml</welcome-file>
+        <welcome-file>page.xhtml</welcome-file>
     </welcome-file-list>
 
     <servlet>
