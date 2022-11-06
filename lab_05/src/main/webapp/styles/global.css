@@ -1,0 +1,20 @@
+.flex {
+    display: flex;
+    gap: 32px;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.page-layout {
+    display: grid;
+    grid-template-rows: 256px auto 256px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    min-height: 100vh;
+}
