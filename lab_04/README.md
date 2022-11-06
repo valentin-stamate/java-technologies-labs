@@ -1,4 +1,4 @@
-# Laboratory 3
+# Laboratory 4
 
 * [x] Compulsory
 * [x] Homework
