@@ -22,7 +22,7 @@ public class TeamService {
     }
 
     public List<Team> getAll() {
-        return entityManager.createQuery("SELECT t FROM teams t").getResultList();
+        return entityManager.createQuery("SELECT t FROM Team t").getResultList();
     }
 
     public void addTeam(Team team) {
