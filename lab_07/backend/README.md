@@ -1,9 +1,5 @@
 # Lab 7
 
-* [ ] Compulsory
-* [ ] Homework (partial)
-* [ ] Bonus
-
 ## Configuration
 * Payara 6
 * Jakarta 10
