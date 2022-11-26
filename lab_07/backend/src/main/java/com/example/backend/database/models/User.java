@@ -2,20 +2,20 @@ package com.example.backend.database.models;
 
 import com.example.backend.database.repositories.UserType;
 import jakarta.persistence.*;
-import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User {
 
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String username;
 
     @Column
@@ -27,7 +27,7 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_files")
-    public Set<UserFile> files;
+    public Set<Document> files;
 
     public User() { }
 
@@ -74,15 +74,15 @@ public class User implements Serializable {
         this.userType = userType;
     }
 
-    public Set<UserFile> getFiles() {
+    public Set<Document> getFiles() {
         return files;
     }
 
-    public void setFiles(Set<UserFile> files) {
+    public void setFiles(Set<Document> files) {
         this.files = files;
     }
 
-    public void addFile(UserFile file) {
+    public void addFile(Document file) {
         if (this.files == null) {
             this.files = new HashSet<>();
         }
@@ -90,12 +90,12 @@ public class User implements Serializable {
         this.files.add(file);
     }
 
-    public void removeFile(UserFile userFile) {
+    public void removeFile(Document document) {
         if (this.files == null) {
             this.files = new HashSet<>();
         }
 
-        this.files.remove(userFile);
+        this.files.remove(document);
     }
 
 }

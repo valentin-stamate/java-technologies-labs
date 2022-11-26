@@ -25,12 +25,12 @@ public class UserResource {
     public Response login(LoginUserBody requestBody) {
 
         try {
-            Object response = userService.loginUser(
+            Object result = userService.loginUser(
                     requestBody.getUsername(),
                     requestBody.getPassword()
             );
 
-            return Response.ok(response).build();
+            return Response.ok(result).build();
         } catch (ServiceException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
@@ -43,13 +43,13 @@ public class UserResource {
     public Response signup(SignupUserBody requestBody) {
 
         try {
-            Object response = userService.signupUser(
+            Object result = userService.signupUser(
                     requestBody.getUsername(),
                     requestBody.getPassword(),
                     requestBody.getUserType()
             );
 
-            return Response.ok(response).build();
+            return Response.ok(result).build();
         } catch (ServiceException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }

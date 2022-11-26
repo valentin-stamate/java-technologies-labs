@@ -1,5 +1,6 @@
-package com.example.backend.database.repositories;
+package com.example.backend.database.repositories.generic;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -7,6 +8,7 @@ import jakarta.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 public abstract class DataRepository<T, ID extends Serializable> implements Serializable {
 

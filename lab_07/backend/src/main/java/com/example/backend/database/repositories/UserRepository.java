@@ -2,7 +2,8 @@ package com.example.backend.database.repositories;
 
 
 import com.example.backend.database.models.User;
-import com.example.backend.database.models.UserFile;
+import com.example.backend.database.models.Document;
+import com.example.backend.database.repositories.generic.DataRepository;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -21,9 +22,9 @@ public class UserRepository extends DataRepository<User, Long> {
         super(User.class);
     }
 
-    public List<UserFile> getFiles() {
+    public List<Document> getFiles() {
         try {
-            return em.createQuery("SELECT c FROM UserFile c WHERE c.user = :user", UserFile.class)
+            return em.createQuery("SELECT c FROM Document c WHERE c.user = :user", Document.class)
                     .setParameter("user", this)
                     .getResultList();
         } catch (NoResultException e) {

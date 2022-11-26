@@ -3,7 +3,10 @@ package com.example.backend.service.jwt;
 import com.example.backend.classes.UserPayload;
 import com.example.backend.database.models.User;
 import com.example.backend.database.repositories.UserType;
+import jakarta.ws.rs.core.HttpHeaders;
+
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public  class UserJwtPayloadService {
@@ -18,8 +21,15 @@ public  class UserJwtPayloadService {
     public static UserPayload getUser(Map<String, Object> payload) {
         return new UserPayload(
                 (String) payload.get(JwtUserPayloadKey.USERNAME_KEY),
-                (UserType) payload.get(JwtUserPayloadKey.USER_TYPE_KEY)
+                UserType.valueOf((String) payload.get(JwtUserPayloadKey.USER_TYPE_KEY))
         );
+    }
+
+    public static UserPayload getUserPayloadFromHeaders(HttpHeaders headers) {
+        List<String> values = headers.getRequestHeaders().get(HttpHeaders.AUTHORIZATION);
+        String token = values.get(0);
+
+        return getUser(JwtService.decode(token));
     }
 
     public static Date getExpirationDate(Map<String, Object> payload) {

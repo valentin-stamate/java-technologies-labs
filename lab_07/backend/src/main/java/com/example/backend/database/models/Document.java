@@ -1,18 +1,25 @@
 package com.example.backend.database.models;
 
 import jakarta.persistence.*;
+import org.apache.commons.lang3.RandomStringUtils;
 
 @Entity
-@Table(name = "files")
-public class UserFile {
+@Table(name = "documents")
+public class Document {
 
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    private String documentId;
+
     @Column
     private String name;
+
+    @Column
+    private Long size;
 
     @Column
     private String author;
@@ -25,13 +32,15 @@ public class UserFile {
     @Column
     private byte[] file;
 
-    public UserFile() { }
+    public Document() { }
 
-    public UserFile(String name, String author, byte[] buffer, User user) {
+    public Document(String name, String author, byte[] buffer, long size, User user) {
         this.name = name;
         this.author = author;
         this.file = buffer;
+        this.size = size;
         this.user = user;
+        this.documentId = RandomStringUtils.random(32, true, true);
     }
 
     public Long getId() {
@@ -72,5 +81,21 @@ public class UserFile {
 
     public void setFile(byte[] file) {
         this.file = file;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
     }
 }
