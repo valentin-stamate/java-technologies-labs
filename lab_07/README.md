@@ -4,5 +4,5 @@
 * [ ] 2
 
 ## Tech Stack
-* Frontend: Angular 14
+* Frontend: Angular 15
 * Backend: Jakarta EE 10

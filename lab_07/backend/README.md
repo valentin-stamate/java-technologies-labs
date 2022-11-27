@@ -16,3 +16,4 @@
 * https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/media.html#multipart
 * https://www.baeldung.com/java-random-string
 * https://jakarta.ee/specifications/platform/8/apidocs/javax/json/jsonobject
+* https://www.baeldung.com/cors-in-jax-rs
