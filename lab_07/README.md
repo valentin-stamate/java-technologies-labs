@@ -7,4 +7,4 @@ WIP
 
 ## Tech Stack
 * Frontend: Angular 14
-* Backend: Jakarta EE 9
+* Backend: Jakarta EE 10

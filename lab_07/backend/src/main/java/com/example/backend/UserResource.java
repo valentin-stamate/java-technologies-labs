@@ -32,7 +32,7 @@ public class UserResource {
 
             return Response.ok(result).build();
         } catch (ServiceException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+            return Response.status(e.getStatus()).entity(e.getMessage()).build();
         }
     }
 
@@ -51,7 +51,7 @@ public class UserResource {
 
             return Response.ok(result).build();
         } catch (ServiceException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+            return Response.status(e.getStatus()).entity(e.getMessage()).build();
         }
     }
 

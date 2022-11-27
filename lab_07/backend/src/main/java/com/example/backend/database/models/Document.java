@@ -30,14 +30,14 @@ public class Document {
 
     @Lob
     @Column
-    private byte[] file;
+    private byte[] fileBytes;
 
     public Document() { }
 
     public Document(String name, String author, byte[] buffer, long size, User user) {
         this.name = name;
         this.author = author;
-        this.file = buffer;
+        this.fileBytes = buffer;
         this.size = size;
         this.user = user;
         this.documentId = RandomStringUtils.random(32, true, true);
@@ -75,12 +75,12 @@ public class Document {
         this.user = user;
     }
 
-    public byte[] getFile() {
-        return file;
+    public byte[] getFileBytes() {
+        return fileBytes;
     }
 
-    public void setFile(byte[] file) {
-        this.file = file;
+    public void setFileBytes(byte[] file) {
+        this.fileBytes = file;
     }
 
     public String getDocumentId() {

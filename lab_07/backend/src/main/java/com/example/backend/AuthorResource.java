@@ -5,23 +5,14 @@ import com.example.backend.database.models.Document;
 import com.example.backend.filters.binding.AuthorAuthenticated;
 import com.example.backend.service.UserService;
 import com.example.backend.service.exception.ServiceException;
-import com.example.backend.service.jwt.JwtService;
 import com.example.backend.service.jwt.UserJwtPayloadService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import jakarta.ws.rs.core.Response.Status;
 import org.glassfish.jersey.media.multipart.FormDataParam;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Path("/author")
 public class AuthorResource {
@@ -37,11 +28,11 @@ public class AuthorResource {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
 
         try {
-            List<Map<String, Object>> result = userService.getFiles(userPayload.getUsername());
+            List<Document> result = userService.getFiles(userPayload.getUsername());
 
             return Response.ok(result).build();
         } catch (ServiceException e) {
-            return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+            return Response.status(e.getStatus()).entity(e.getMessage()).build();
         }
     }
 
@@ -57,7 +48,7 @@ public class AuthorResource {
 
             return Response.status(Status.CREATED).build();
         } catch (ServiceException e) {
-            return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+            return Response.status(e.getStatus()).entity(e.getMessage()).build();
         }
     }
 
@@ -69,11 +60,11 @@ public class AuthorResource {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
 
         try {
-            InputStream documentInputStream = userService.getDocumentBuffer(userPayload.getUsername(), documentId);
+            InputStream documentInputStream = userService.getFileBuffer(userPayload.getUsername(), documentId);
 
             return Response.ok(documentInputStream).build();
         } catch (ServiceException e) {
-            return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+            return Response.status(e.getStatus()).entity(e.getMessage()).build();
         }
     }
 
@@ -88,7 +79,7 @@ public class AuthorResource {
 
             return Response.ok().build();
         } catch (ServiceException e) {
-            return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+            return Response.status(e.getStatus()).entity(e.getMessage()).build();
         }
     }
 
