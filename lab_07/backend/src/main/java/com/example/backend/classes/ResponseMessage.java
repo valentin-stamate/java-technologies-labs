@@ -11,4 +11,5 @@ public interface ResponseMessage {
     String FILE_NOT_FOUND = "File not found";
     String CANNOT_READ_FILE = "Cannot read file buffer";
     String FILE_NOT_OWN_BY_USER = "The file is now owned by current user";
+    String TIMEFRAME_EXCEEDED = "Time frame exceeded";
 }

@@ -1,8 +1,10 @@
 package com.example.backend;
 
+import com.example.backend.classes.ResponseMessage;
 import com.example.backend.classes.UserPayload;
 import com.example.backend.database.models.Document;
 import com.example.backend.filters.binding.AuthorAuthenticated;
+import com.example.backend.service.TimeFrame;
 import com.example.backend.service.UserService;
 import com.example.backend.service.exception.ServiceException;
 import com.example.backend.service.jwt.UserJwtPayloadService;
@@ -42,6 +44,10 @@ public class AuthorResource {
     @AuthorAuthenticated
     public Response uploadFile(@Context HttpHeaders headers, @FormParam("name") String name, @FormDataParam("file") InputStream file) {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
+
+        if (!TimeFrame.checkCurrentTimeWithInterval()) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).entity(ResponseMessage.TIMEFRAME_EXCEEDED).build();
+        }
 
         try {
             userService.uploadFile(userPayload.getUsername(), name, file);

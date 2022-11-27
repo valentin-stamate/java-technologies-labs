@@ -1,9 +1,7 @@
 # Lab 7
 
-WIP
-* [ ] Compulsory
-* [ ] Homework (partial)
-* [ ] Bonus
+* [ ] 1
+* [ ] 2
 
 ## Tech Stack
 * Frontend: Angular 14

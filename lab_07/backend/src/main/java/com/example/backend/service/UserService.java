@@ -103,6 +103,8 @@ public class UserService implements Serializable {
 
         documentRepository.persist(document);
         userRepository.update(existingUser);
+
+        LoggingService.writeFileLog(document);
     }
 
     public InputStream getFileBuffer(String username, String documentId) throws ServiceException {

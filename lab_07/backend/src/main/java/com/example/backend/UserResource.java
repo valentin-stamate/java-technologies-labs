@@ -1,7 +1,9 @@
 package com.example.backend;
 
+import com.example.backend.classes.ResponseMessage;
 import com.example.backend.requests.LoginUserBody;
 import com.example.backend.requests.SignupUserBody;
+import com.example.backend.service.TimeFrame;
 import com.example.backend.service.UserService;
 import com.example.backend.service.exception.ServiceException;
 import jakarta.inject.Inject;
@@ -41,6 +43,9 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response signup(SignupUserBody requestBody) {
+        if (!TimeFrame.checkCurrentTimeWithInterval()) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).entity(ResponseMessage.TIMEFRAME_EXCEEDED).build();
+        }
 
         try {
             Object result = userService.signupUser(
