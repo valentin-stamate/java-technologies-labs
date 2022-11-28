@@ -13,16 +13,32 @@ import axios from "axios";
 export class HomeComponent {
 
   userPayload: UserPayload;
+  tokenExpirationDate: Date;
+
   authorizationToken;
 
   fileName = '';
   files: File[] = [];
 
+  sessionCountDown: string;
+
   constructor() {
     this.authorizationToken = CookieService.readCookie(Cookies.AUTH);
     this.userPayload = UtilService.getUserPayloadFromToken(this.authorizationToken);
+    this.tokenExpirationDate = this.userPayload.exp;
 
     this.refreshFiles();
+
+    this.sessionCountDown = UtilService.msToTime(this.tokenExpirationDate.getTime() - new Date().getTime());
+    this.startCountDown();
+  }
+
+  async startCountDown() {
+    return new Promise((resolve, reject) => {
+      setInterval(() => {
+        this.sessionCountDown = UtilService.msToTime(this.tokenExpirationDate.getTime() - new Date().getTime());
+      }, 1000);
+    });
   }
 
   async onFileFormSubmit(event: Event) {
@@ -49,7 +65,13 @@ export class HomeComponent {
 
   async refreshFiles() {
     try {
-      const response = await axios.get(Endpoints.AUTHOR_FILES, {
+      let endpoint = Endpoints.AUTHOR_FILES;
+
+      if (this.userPayload.userType === 'ADMIN') {
+        endpoint = Endpoints.ADMIN_FILES;
+      }
+
+      const response = await axios.get(endpoint, {
         headers: {
           'Authorization': this.authorizationToken,
         }
@@ -65,7 +87,13 @@ export class HomeComponent {
 
   async onFileDownload(file: File) {
     try {
-      const response = await axios.get(`${Endpoints.AUTHOR_FILES}/${file.documentId}`, {
+      let endpoint = Endpoints.AUTHOR_FILES;
+
+      if (this.userPayload.userType === 'ADMIN') {
+        endpoint = Endpoints.ADMIN_FILES;
+      }
+
+      const response = await axios.get(`${endpoint}/${file.documentId}`, {
         headers: {
           'Authorization': this.authorizationToken,
         }
@@ -81,7 +109,13 @@ export class HomeComponent {
 
   async onFileRemove(file: File) {
     try {
-      const response = await axios.delete(`${Endpoints.AUTHOR_FILES}/${file.documentId}`, {
+      let endpoint = Endpoints.AUTHOR_FILES;
+
+      if (this.userPayload.userType === 'ADMIN') {
+        endpoint = Endpoints.ADMIN_FILES;
+      }
+
+      const response = await axios.delete(`${endpoint}/${file.documentId}`, {
         headers: {
           'Authorization': this.authorizationToken,
         }
