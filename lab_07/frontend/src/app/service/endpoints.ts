@@ -4,4 +4,6 @@ export class Endpoints {
 
   static LOGIN = `${Endpoints.HOST}/users/login`;
   static SIGNUP = `${Endpoints.HOST}/users/signup`;
+
+  static AUTHOR_FILES = `${Endpoints.HOST}/author/files`;
 }

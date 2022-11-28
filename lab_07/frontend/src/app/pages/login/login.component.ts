@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import axios from "axios";
 import {Endpoints} from "../../service/endpoints";
+import {Cookies, CookieService} from "../../service/cookie.service";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,9 @@ export class LoginComponent {
         }
       });
 
-      console.log(response);
+      CookieService.setCookie(Cookies.AUTH, response.data);
+
+      location.href = '/home';
     } catch (e) {
       console.log(e);
     } finally {
