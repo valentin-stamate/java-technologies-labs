@@ -1,7 +1,7 @@
 # Lab 7
 
 * [x] 1
-* [ ] 2 (Partial, Work In Progress)
+* [ ] 2 (Partial)
 
 ## Tech Stack
 * Frontend: Angular 15
