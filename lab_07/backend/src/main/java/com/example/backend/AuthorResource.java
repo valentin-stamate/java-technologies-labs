@@ -3,6 +3,7 @@ package com.example.backend;
 import com.example.backend.classes.ResponseMessage;
 import com.example.backend.classes.UserPayload;
 import com.example.backend.database.models.Document;
+import com.example.backend.filters.binding.AllowCors;
 import com.example.backend.filters.binding.AuthorAuthenticated;
 import com.example.backend.service.TimeFrame;
 import com.example.backend.service.UserService;
@@ -13,10 +14,12 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import jakarta.ws.rs.core.Response.Status;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 @Path("/author")
+@AuthorAuthenticated
 public class AuthorResource {
 
     @Inject
@@ -25,7 +28,6 @@ public class AuthorResource {
     @GET
     @Path("/files")
     @Produces(MediaType.APPLICATION_JSON)
-    @AuthorAuthenticated
     public Response getFiles(@Context HttpHeaders headers) {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
 
@@ -41,7 +43,6 @@ public class AuthorResource {
     @POST
     @Path("/files")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @AuthorAuthenticated
     public Response uploadFile(@Context HttpHeaders headers, @FormParam("name") String name, @FormDataParam("file") InputStream file) {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
 
@@ -51,17 +52,19 @@ public class AuthorResource {
 
         try {
             userService.uploadFile(userPayload.getUsername(), name, file);
+            file.close();
 
             return Response.status(Status.CREATED).build();
         } catch (ServiceException e) {
             return Response.status(e.getStatus()).entity(e.getMessage()).build();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @GET
     @Path("/files/{id}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    @AuthorAuthenticated
     public Response downloadFile(@Context HttpHeaders headers, @PathParam("id") String documentId) {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
 
@@ -76,7 +79,6 @@ public class AuthorResource {
 
     @DELETE
     @Path("/files/{id}")
-    @AuthorAuthenticated
     public Response removeFile(@Context HttpHeaders headers, @PathParam("id") String documentId) {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
 

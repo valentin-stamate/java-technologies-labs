@@ -17,3 +17,4 @@
 * https://www.baeldung.com/java-random-string
 * https://jakarta.ee/specifications/platform/8/apidocs/javax/json/jsonobject
 * https://www.baeldung.com/cors-in-jax-rs
+* https://stackoverflow.com/a/38284744/10805602
