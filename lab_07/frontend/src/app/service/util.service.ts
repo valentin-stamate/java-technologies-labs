@@ -5,10 +5,18 @@ export class UtilService {
   static getUserPayloadFromToken(token: string): UserPayload {
     if (token == null) {
       location.href = "/login";
+      return {} as any;
     }
 
     const payload = jwtDecode(token) as any;
     payload.exp = new Date(payload.exp * 1000);
+
+    const currentDate = new Date();
+
+    if (payload.exp.getTime() - currentDate.getTime() < 0) {
+      location.href = "/login";
+      return {} as any;
+    }
 
     return payload as UserPayload;
   }

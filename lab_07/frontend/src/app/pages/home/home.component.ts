@@ -35,8 +35,19 @@ export class HomeComponent {
 
   async startCountDown() {
     return new Promise((resolve, reject) => {
+      const tokenExpirationTime = this.tokenExpirationDate.getTime();
+
       setInterval(() => {
-        this.sessionCountDown = UtilService.msToTime(this.tokenExpirationDate.getTime() - new Date().getTime());
+        const currentTime = new Date().getTime();
+        const diff = tokenExpirationTime - currentTime;
+
+        if (diff < 0) {
+          resolve(0);
+          location.href = '/login';
+          return;
+        }
+
+        this.sessionCountDown = UtilService.msToTime(diff);
       }, 1000);
     });
   }

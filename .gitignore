@@ -2,3 +2,6 @@
 gradle
 gradlew
 gradlew.bat
+.vscode
+package-lock.json
+build
