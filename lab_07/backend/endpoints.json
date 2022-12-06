@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "89b62164-d57d-429a-904d-437040ed0eea",
+		"name": "Lab 07",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12026756"
+	},
+	"item": [
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Get Files",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{author_token}}",
+								"description": "fretre",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/author/files",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"author",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add File",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{author_token}}",
+								"description": "fretre",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Valentin/Desktop/Rute 27.11.2022 20-31-43.pdf"
+								},
+								{
+									"key": "name",
+									"value": "rute.pdf",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/author/files",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"author",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download File",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{author_token}}",
+								"description": "fretre",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/author/files/hdCdeIk01DGeLssog4uv0TWtVeBout61",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"author",
+								"files",
+								"hdCdeIk01DGeLssog4uv0TWtVeBout61"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove File",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{author_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/author/files/V2k7gTN7IYx5XNFx9bauT5Gp6M8X5kCG",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"author",
+								"files",
+								"V2k7gTN7IYx5XNFx9bauT5Gp6M8X5kCG"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get Files",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/admin/files",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download File",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/admin/files/uvRUsrNm7FFi7WbDcdmMk0CwC6v8DvqO",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"files",
+								"uvRUsrNm7FFi7WbDcdmMk0CwC6v8DvqO"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"pass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin02\",\r\n    \"password\": \"pass\",\r\n    \"userType\": \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/signup",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "author_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "reviewer_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

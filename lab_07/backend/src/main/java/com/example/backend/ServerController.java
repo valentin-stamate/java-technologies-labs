@@ -6,4 +6,4 @@ import jakarta.ws.rs.core.Application;
 
 @ApplicationPath("/api")
 @AllowCors
-public class ServerApplication extends Application { }
+public class ServerController extends Application { }

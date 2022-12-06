@@ -27,6 +27,9 @@ public class UserService implements Serializable {
     private UserRepository userRepository;
 
     @Inject
+    private CachingService cachingService;
+
+    @Inject
     private DocumentRepository documentRepository;
 
     /* ------------================= VISITOR =================------------ */
@@ -105,6 +108,8 @@ public class UserService implements Serializable {
         userRepository.update(existingUser);
 
         LoggingService.writeFileLog(document);
+
+        cachingService.addFile(document.getDocumentId(), buffer);
     }
 
     public InputStream getFileBuffer(String username, String documentId) throws ServiceException {

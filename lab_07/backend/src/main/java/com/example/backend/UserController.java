@@ -15,7 +15,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/users")
-public class UserResource {
+public class UserController {
 
     @Inject
     private UserService userService;

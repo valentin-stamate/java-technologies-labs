@@ -3,8 +3,8 @@ package com.example.backend;
 import com.example.backend.classes.ResponseMessage;
 import com.example.backend.classes.UserPayload;
 import com.example.backend.database.models.Document;
-import com.example.backend.filters.binding.AllowCors;
 import com.example.backend.filters.binding.AuthorAuthenticated;
+import com.example.backend.filters.binding.FileCached;
 import com.example.backend.service.TimeFrame;
 import com.example.backend.service.UserService;
 import com.example.backend.service.exception.ServiceException;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @Path("/author")
 @AuthorAuthenticated
-public class AuthorResource {
+public class AuthorController {
 
     @Inject
     private UserService userService;
@@ -64,6 +64,7 @@ public class AuthorResource {
 
     @GET
     @Path("/files/{id}")
+    @FileCached
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response downloadFile(@Context HttpHeaders headers, @PathParam("id") String documentId) {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);
@@ -78,6 +79,7 @@ public class AuthorResource {
     }
 
     @DELETE
+    @FileCached
     @Path("/files/{id}")
     public Response removeFile(@Context HttpHeaders headers, @PathParam("id") String documentId) {
         UserPayload userPayload = UserJwtPayloadService.getUserPayloadFromHeaders(headers);

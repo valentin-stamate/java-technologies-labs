@@ -6,6 +6,8 @@ import com.example.backend.database.repositories.UserType;
 import com.example.backend.filters.binding.ReviewerAuthenticated;
 import com.example.backend.service.jwt.JwtService;
 import com.example.backend.service.jwt.UserJwtPayloadService;
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.ContainerResponseContext;
@@ -17,9 +19,11 @@ import java.util.Map;
 
 @ReviewerAuthenticated
 @Provider
+@Priority(Priorities.AUTHORIZATION)
 public class ReviewerFilter implements ContainerRequestFilter, ContainerResponseFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
+        System.out.println("Reviewer Filter");
         String authorization = requestContext.getHeaderString("Authorization");
 
         if (authorization == null || authorization.equals("")) {
